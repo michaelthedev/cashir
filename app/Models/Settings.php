@@ -12,9 +12,4 @@ class Settings extends Model
         'value',
         'group',
     ];
-
-    public function scopeWhereGroup($query, string $group)
-    {
-        return $query->where('group', $group);
-    }
 }
