@@ -13,9 +13,7 @@ final class TransactionController extends Controller
 {
     public function list(): View
     {
-        $transactions = Transaction::latest()
-            ->get();
-
-        return view('dashboard.transactions', compact('transactions'));
+        return view('dashboard.transactions')
+            ->with('transactions', Transaction::paginate());
     }
 }

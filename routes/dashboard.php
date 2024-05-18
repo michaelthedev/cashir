@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AuthController;
+use App\Http\Controllers\Dashboard\PaymentController;
 use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -12,11 +13,25 @@ Route::get('/', function () {
 Route::get('/transactions', [TransactionController::class, 'list'])
     ->name('transactions');
 
-Route::get('/settings/{group}', [SettingsController::class, 'show'])
-    ->name('settings.group');
+Route::prefix('settings')->group(function () {
+    Route::patch('/', [SettingsController::class, 'update'])
+        ->name('settings.update');
 
-Route::get('/payments', [])
-    ->name('payments');
+    Route::get('/{group}', [SettingsController::class, 'show'])
+        ->name('settings.group');
+});
+
+Route::prefix('payments')->group(function () {
+    Route::view('/', 'dashboard.payments.create')
+        ->name('payments');
+
+    Route::post('/', [PaymentController::class, 'create'])
+        ->name('payments.create');
+
+    Route::view('/notice', 'dashboard.payments.notice')
+        ->name('payments.notice');
+});
+
 
 Route::middleware('guest')->group(function () {
 

@@ -14,12 +14,18 @@ function isCurrentRoute(string $name): bool
     return Route::is($name);
 }
 
-function settings(string $name, ?string $default = null): ?string
+function settings(?string $name = null, ?string $default = null): null|string|array
 {
-    return cache()->remember('site_settings', 3600, function() {
+    $settings = cache()->remember('site_settings', 3600, function() {
         return \App\Models\Settings::all()
             ->mapWithKeys(function($setting) {
                 return [$setting->name => $setting->value];
-            });
-    })[$name] ?? $default;
+            })->toArray();
+    });
+
+    if ($name === null) {
+        return $settings;
+    } else {
+        return $settings[$name] ?? $default;
+    }
 }
