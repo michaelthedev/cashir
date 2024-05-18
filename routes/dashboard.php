@@ -13,7 +13,7 @@ Route::get('/transactions', [TransactionController::class, 'list'])
     ->name('transactions');
 
 Route::get('/settings/{group}', [SettingsController::class, 'show'])
-    ->name('settings.payment');
+    ->name('settings.group');
 
 Route::get('/payments', [])
     ->name('payments');
