@@ -157,7 +157,9 @@
 
     <x-dashboard.sidebar />
 
-    {{ $slot }}
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        {{ $slot }}
+    </main>
 
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
