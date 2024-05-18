@@ -1,16 +1,18 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AuthController;
+use App\Http\Controllers\Dashboard\SettingsController;
+use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
 })->name('home');
 
-Route::get('/transactions', [])
+Route::get('/transactions', [TransactionController::class, 'list'])
     ->name('transactions');
 
-Route::get('/settings/payment', [])
+Route::get('/settings/{group}', [SettingsController::class, 'show'])
     ->name('settings.payment');
 
 Route::get('/payments', [])
