@@ -16,7 +16,8 @@ return [
         [
             'name' => 'Payment Settings',
             'icon' => 'sliders',
-            'route' => 'dashboard.settings.payment'
+            'route' => 'dashboard.settings.group',
+            'params' => ['group' => 'payment']
         ],
         [
             'name' => 'Make Payment',

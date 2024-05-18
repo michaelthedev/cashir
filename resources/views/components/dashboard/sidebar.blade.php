@@ -9,7 +9,7 @@
         <ul class="navbar-nav">
             @foreach(config('dashboard.navs') as $nav)
                 <li class="nav-item">
-                    <a class="nav-link {{isCurrentRoute($nav['route']) ? 'active' : ''}}" href="{{ route($nav['route']) }}">
+                    <a class="nav-link {{isCurrentRoute($nav['route']) ? 'active' : ''}}" href="{{ route($nav['route'], $nav['params'] ?? []) }}">
                         <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <x-svg icon="{{ $nav['icon'] }}"/>
                         </div>
