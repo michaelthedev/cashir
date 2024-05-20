@@ -62,7 +62,7 @@ export default function Login() {
         <div className="row">
           <div className="col-xl-4 col-md-6 d-flex flex-column mx-auto">
             <div className="card card-plain mt-5">
-              <div className="card-header pb-0 text-center">
+              <div className="card-header pb-0 text-center bg-transparent">
                 <h3 className="font-weight-black text-dark display-6">
                   Welcome back!
                 </h3>

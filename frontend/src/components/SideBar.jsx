@@ -4,7 +4,7 @@ const navs = [
   {
     "name": "Dashboard",
     "icon": "sitemap-4",
-    "route": "dashboard/"
+    "route": "/"
   },
   {
     "name": "Transactions",

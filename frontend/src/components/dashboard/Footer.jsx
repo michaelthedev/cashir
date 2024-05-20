@@ -5,21 +5,17 @@ export function Footer() {
           <div className="row align-items-center justify-content-lg-between">
             <div className="col-lg-6 mb-lg-0 mb-4">
               <div className="copyright text-center text-xs text-muted text-lg-start">
-                Copyright © {"{"}
-                {"{"} date('Y') {"}"}
-                {"}"}. Made by{" "}
+                Copyright © {new Date().getFullYear()}. Made by {" "}
                 <a href="https://github.com/michaelthedev" target="_blank">
                   @michaelthedev
-                </a>
-                , template by
+                </a>, template by {" "}
                 <a
                   href="https://www.creative-tim.com"
                   className="text-secondary"
                   target="_blank"
-                >
-                  Creative Tim
+                >{" "}
+                  Creative Tim.
                 </a>
-                .
               </div>
             </div>
             <div className="col-lg-6">
@@ -57,7 +53,7 @@ export function Footer() {
                     className="nav-link text-xs pe-0 text-muted"
                     target="_blank"
                   >
-                    License
+                    Template License
                   </a>
                 </li>
               </ul>

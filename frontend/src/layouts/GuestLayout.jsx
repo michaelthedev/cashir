@@ -17,7 +17,6 @@ export default function GuestLayout() {
           <section>
             <div className="page-header min-vh-100">
               <ToastContainer/>
-
               <Outlet/>
             </div>
           </section>
