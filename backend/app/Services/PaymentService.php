@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Interfaces\PaymentGatewayI;
 use App\Models\PaymentGateway;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
@@ -51,6 +52,8 @@ final class PaymentService
             return $response;
         }
 
+        $this->createTransaction($gateway, $amount, $reference);
+
         try {
             $payment = $provider->setAmount($amount)
                 ->setReference($reference)
@@ -77,5 +80,23 @@ final class PaymentService
         }
 
         return $response;
+    }
+
+    private function createTransaction(
+        PaymentGateway $gateway,
+        float $amount,
+        string $reference
+    ): void
+    {
+        Transaction::new([
+            'user_id' => $this->user->id,
+            'amount' => $amount,
+            'reference' => $reference,
+            'type' => 'payment',
+            'flow' => 'credit',
+            'details' => [
+                'gateway_id' => $gateway->id,
+            ]
+        ]);
     }
 }
