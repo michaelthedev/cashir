@@ -48,9 +48,12 @@ final class AuthController extends Controller
             ], 401);
         }
 
+        $resp = $this->tokenData($token);
+        $resp['user'] = auth()->user();
+
         return response()->json([
             'message' => 'success',
-            'data' => $this->tokenData($token)
+            'data' => $resp
         ]);
     }
 
