@@ -1,0 +1,109 @@
+#sidenav-collapse-main {
+  height: 100%;
+}
+
+:root {
+  /*--icon-color-primary: inherit;*/
+  /*--icon-color-secondary: currentColor;*/
+  --icon-sm: 0.8em;
+  --icon-lg: 1.2em;
+  --icon-color-primary: white;
+  --icon-color-secondary: rgba(255, 255, 255, 0.5);
+  --nui-icon-size: 20px;
+}
+
+.nui {
+  display: inline-block;
+  color: var(--icon-color-primary); /* icon primary color */
+  height: var(--nui-icon-size);
+  width: var(--nui-icon-size);
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.nui use {
+  /* icon secondary color */
+  fill: var(--icon-color-secondary);
+  stroke: var(--icon-color-secondary);
+}
+
+/* relative units */
+.nui-sm {
+  font-size: var(--icon-sm);
+}
+
+.nui-lg {
+  font-size: var(--icon-lg);
+}
+
+/* absolute units */
+.nui-16 {
+  font-size: 16px;
+}
+
+.nui-32 {
+  font-size: 32px;
+}
+
+.stroke-1 {
+  stroke-width: 1px;
+}
+
+.stroke-2 {
+  stroke-width: 2px;
+}
+
+.stroke-3 {
+  stroke-width: 3px;
+}
+
+.stroke-4 {
+  stroke-width: 4px;
+}
+
+.nui use {
+  --icon-stroke-linecap-butt: butt;
+  stroke-miterlimit: 10;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.stroke-round use {
+  --icon-stroke-linecap-butt: round;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nui-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.nui-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.nui-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.nui-flip-y {
+  transform: scaleY(-1);
+}
+
+.nui-flip-x {
+  transform: scaleX(-1);
+}
+
+.nui-is-spinning {
+  animation: icon-spin 1s infinite linear;
+}
+
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
