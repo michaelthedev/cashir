@@ -58,7 +58,7 @@ final class PaymentService
             $payment = $provider->setAmount($amount)
                 ->setReference($reference)
                 ->setCustomer($this->user->only(['email', 'name']))
-                ->setCallback(route('payments.callback'))
+                ->setCallback(route('callbacks.payment', $gateway['code']))
                 ->checkout();
 
             if ($payment->isSuccessful()) {
