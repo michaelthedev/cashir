@@ -1,20 +1,11 @@
 import SvgIcon from "./SvgIcon.jsx";
+import {Link} from "react-router-dom";
 
 const navs = [
   {
     "name": "Dashboard",
     "icon": "sitemap-4",
     "route": "/"
-  },
-  {
-    "name": "Transactions",
-    "icon": "descending-sorting",
-    "route": "dashboard/transactions"
-  },
-  {
-    "name": "Payment Settings",
-    "icon": "sliders",
-    "route": "dashboard/settings",
   },
   {
     "name": "Make Payment",
@@ -40,14 +31,16 @@ export const SideBar = () => {
           <ul className="navbar-nav">
             {navs.map((nav, index) => (
               <li className="nav-item" key={index}>
-                <a className="nav-link"
-                   href={nav.route}>
+                <Link
+                  to={nav.route}
+                  className="nav-link"
+                >
                   <div
                     className="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                     <SvgIcon icon={nav.icon}/>
                   </div>
                   <span className="nav-link-text ms-1">{nav.name}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

@@ -7,6 +7,7 @@ const GuestLayout = lazy(() => import('../layouts/GuestLayout'));
 
 const DashboardLayout = lazy(() => import('../layouts/DashboardLayout'));
 const DashboardPage = lazy(() => import('../pages/Dashboard'));
+const PaymentPage = lazy(() => import('../pages/Payment'));
 
 
 export default function Routes() {
@@ -36,6 +37,10 @@ export default function Routes() {
         {
           index: true,
           element: <DashboardPage/>,
+        },
+        {
+          path: 'dashboard/payments',
+          element: <PaymentPage/>,
         }
       ],
     },

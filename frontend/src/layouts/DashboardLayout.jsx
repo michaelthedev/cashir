@@ -5,6 +5,8 @@ import Page from "../components/dashboard/Page.jsx";
 import {Suspense, useEffect} from "react";
 import {useStateContext} from "../contexts/AuthContextProvider.jsx";
 import axiosClient from "../app/axios.js";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DashboardLayout() {
   const { user, userToken, setUser} = useStateContext();
@@ -35,6 +37,7 @@ export default function DashboardLayout() {
         <SideBar />
         <Page>
           <Outlet />
+          <ToastContainer/>
         </Page>
       </Suspense>
     </>
