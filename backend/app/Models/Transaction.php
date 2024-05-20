@@ -34,7 +34,8 @@ class Transaction extends Model
     ];
 
     protected $appends = [
-        // 'date'
+        'date',
+        'amount_formatted'
     ];
 
     public static function new(array $data): self
@@ -54,10 +55,15 @@ class Transaction extends Model
         );
     }
 
-    public function getDateAttribute(): string
+    public function getAmountFormattedAttribute(): string
+    {
+        return money($this->amount);
+    }
+
+    public function getDateAttribute(): ?string
     {
         return $this->created_at
-            ->setTimezone(config('app.timezone'))
-            ->format('Y-m-d h:ia');
+            ?->setTimezone(config('app.timezone'))
+            ?->format('d M, Y h:ia');
     }
 }
