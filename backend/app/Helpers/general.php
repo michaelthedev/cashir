@@ -30,7 +30,7 @@ function settings(?string $name = null, ?string $default = null): null|string|ar
     }
 }
 
-function money($amount): string
+function money(float $amount): string
 {
     return settings('currency_symbol') . number_format($amount, 2);
 }

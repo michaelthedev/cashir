@@ -30,7 +30,7 @@ final class StatisticsController extends Controller
                     'total_amount' => money($stats['total_amount'] / 100),
                     'average_amount' => money($stats['average_amount'] / 100),
                     'total_count' => $stats['total_count'],
-                    'total_fees' => money($stats['total_fees'])
+                    'total_fees' => money((float) $stats['total_fees'])
                 ],
                 'charts' => [
                     'daily' => $this->getDaily($statYear, $statMonth),
