@@ -14,7 +14,8 @@ final class TransactionController extends Controller
     {
         return response()->json([
             'message' => 'All transactions',
-            'data' => Transaction::paginate()
+            'data' => Transaction::latest()
+                ->paginate()
         ]);
     }
 
