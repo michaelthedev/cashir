@@ -20,4 +20,21 @@ final class TransactionController extends Controller
                 ->paginate()
         ]);
     }
+
+    public function show(int $trans_id): JsonResponse
+    {
+        $transaction = Transaction::whereTransId($trans_id)
+            ->first();
+
+        if (!$transaction) {
+            return response()->json([
+                'message' => 'Transaction not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Transaction details',
+            'data' => $transaction
+        ]);
+    }
 }

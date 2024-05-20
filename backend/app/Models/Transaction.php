@@ -22,7 +22,8 @@ class Transaction extends Model
     protected $casts = [
         'fee' => 'float',
         'amount' => 'float',
-        'details' => 'array'
+        'details' => 'array',
+        'trans_id' => 'integer',
     ];
 
     protected $hidden = [
