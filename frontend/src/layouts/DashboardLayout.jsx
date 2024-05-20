@@ -1,15 +1,42 @@
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
 import {SideBar} from "../components/SideBar.jsx";
 import '../assets/style.css';
 import Page from "../components/dashboard/Page.jsx";
+import {Suspense, useEffect} from "react";
+import {useStateContext} from "../contexts/AuthContextProvider.jsx";
+import axiosClient from "../app/axios.js";
 
-export function DashboardLayout() {
-    return (
-        <>
-          <SideBar />
-          <Page>
-            <Outlet />
-          </Page>
-        </>
-    )
+export default function DashboardLayout() {
+  const { user, userToken, setUser} = useStateContext();
+
+  // add dashboard classes to body
+  useEffect(() => {
+    document.body.classList.add('g-sidenav-show');
+
+    if (!user) {
+      axiosClient.get('/user')
+        .then(({ data }) => {
+          setUser(data.data);
+        })
+    }
+
+    return () => {
+      document.body.classList.remove('g-side-nav-show');
+    }
+  }, [])
+
+  if (!userToken) {
+    return <Navigate to="/login" />
+  }
+  
+  return (
+    <>
+      <Suspense>
+        <SideBar />
+        <Page>
+          <Outlet />
+        </Page>
+      </Suspense>
+    </>
+  )
 }

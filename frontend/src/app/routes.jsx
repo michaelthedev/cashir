@@ -1,34 +1,43 @@
 import {Navigate, useRoutes} from "react-router-dom";
-import DashboardPage from "../pages/Dashboard";
-import NotFound from "../components/NotFound.jsx";
-import Login from "../pages/Auth/Login.jsx";
-import GuestLayout from "../layouts/GuestLayout.jsx";
-import {DashboardLayout} from "../layouts/DashboardLayout.jsx";
+import {lazy} from "react";
+
+const LoginPage = lazy(() => import('../pages/Auth/Login'));
+const NotFound = lazy(() => import('../components/NotFound'));
+const GuestLayout = lazy(() => import('../layouts/GuestLayout'));
+
+const DashboardLayout = lazy(() => import('../layouts/DashboardLayout'));
+const DashboardPage = lazy(() => import('../pages/Dashboard'));
+
 
 export default function Routes() {
-  const routes = useRoutes([
+  return useRoutes([
     {
       path: '/',
-      element: <GuestLayout />,
+      element: <GuestLayout/>,
       children: [
-        { path: 'login', element: <Login /> },
-        { path: '404', element: <NotFound /> },
-        { path: '/', element: <Navigate to="/dashboard" /> },
-        { path: '*', element: <Navigate to="/404" /> },
+        {
+          path: '/login',
+          element: <LoginPage/>,
+        },
+        {
+          path: '/404',
+          element: <NotFound/>
+        },
+        {
+          path: '*',
+          element: <Navigate to="/404" replace/>
+        }
       ],
     },
     {
-      path: '/dashboard',
-      element: <DashboardLayout />,
+      path: '/',
+      element: <DashboardLayout/>,
       children: [
-        { path: '', element: <DashboardPage /> },
+        {
+          index: true,
+          element: <DashboardPage/>,
+        }
       ],
     },
-  ])
-
-  return (
-    <>
-      {routes}
-    </>
-  );
+  ]);
 }
