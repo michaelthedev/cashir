@@ -2,7 +2,7 @@ import {useState} from "react";
 import axiosClient from "../../app/axios.js";
 import {useStateContext} from "../../contexts/AuthContextProvider.jsx";
 import {toast} from "react-toastify";
-import Errors from "../../components/Erros.jsx";
+import Errors from "../../components/Errors.jsx";
 
 
 export default function Login() {
