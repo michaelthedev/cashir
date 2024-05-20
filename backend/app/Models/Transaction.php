@@ -34,7 +34,7 @@ class Transaction extends Model
     ];
 
     protected $appends = [
-        'date'
+        // 'date'
     ];
 
     public static function new(array $data): self

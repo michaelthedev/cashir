@@ -29,3 +29,8 @@ function settings(?string $name = null, ?string $default = null): null|string|ar
         return $settings[$name] ?? $default;
     }
 }
+
+function money($amount): string
+{
+    return settings('currency_symbol') . number_format($amount, 2);
+}
