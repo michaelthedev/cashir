@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -13,6 +14,8 @@ Route::middleware('auth:api')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
     });
+
+    Route::get('user', [UserController::class, 'get']);
 
     Route::prefix('payments')->group(function () {
         Route::get('options', [PaymentController::class, 'options']);
