@@ -1,5 +1,6 @@
 import SvgIcon from "./SvgIcon.jsx";
 import {Link} from "react-router-dom";
+import {toggleSidenavR} from "../app/template.js";
 
 const navs = [
   {
@@ -21,7 +22,7 @@ export const SideBar = () => {
         <div className="sidenav-header">
           <i
             className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-            aria-hidden="true" id="iconSidenav"></i>
+            aria-hidden="true" id="iconSidenav" onClick={toggleSidenavR}></i>
           <a className="navbar-brand d-flex align-items-center m-0"
              href="/dashboard" target="_blank">
             <span className="font-weight-bold text-lg">Dashboard</span>

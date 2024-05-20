@@ -1,16 +1,17 @@
 import axiosClient from "../../app/axios.js";
 import {useStateContext} from "../../contexts/AuthContextProvider.jsx";
+import {toggleSidenavR} from "../../app/template.js";
 
 export default function Navbar() {
-    const { setUser, setUserToken } = useStateContext();
+  const { setUser, setUserToken } = useStateContext();
 
-    const logout = (ev) => {
-      ev.preventDefault();
-      axiosClient.post("/auth/logout").then(() => {
-        setUser({});
-        setUserToken(null);
-      });
-    };
+  const logout = (ev) => {
+    ev.preventDefault();
+    axiosClient.post("/auth/logout").then(() => {
+      setUser({});
+      setUserToken(null);
+    });
+  };
 
   return (
     <>
@@ -44,7 +45,7 @@ export default function Navbar() {
 
             <ul className="navbar-nav  justify-content-end">
               <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
-                <a href="#" className="nav-link text-body p-0" id="iconNavbarSidenav">
+                <a href="#" className="nav-link text-body p-0" id="iconNavbarSidenav" onClick={toggleSidenavR}>
                   <div className="sidenav-toggler-inner">
                     <i className="sidenav-toggler-line"></i>
                     <i className="sidenav-toggler-line"></i>
@@ -55,7 +56,7 @@ export default function Navbar() {
               <li className="nav-item dropdown ps-2 d-flex align-items-center">
                 <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton"
                    data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="{{ asset('cUI/img/team-2.jpg') }}" className="avatar avatar-sm" alt="avatar"/>
+                  <img src="./assets/img/team-2.jpg" className="avatar avatar-sm" alt="avatar"/>
                 </a>
                 <ul className="dropdown-menu  dropdown-menu-end me-sm-n4" aria-labelledby="dropdownMenuButton">
                   <li>
