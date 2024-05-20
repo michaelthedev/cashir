@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\PaymentGateway;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PaymentGatewaySeeder extends Seeder
 {
@@ -17,19 +18,20 @@ class PaymentGatewaySeeder extends Seeder
                 'name' => 'Paystack',
                 'code' => 'paystack',
                 'class' => 'App\Services\Gateways\PaystackPayment',
-                'config' => []
+                'config' => '[]'
             ],
             [
                 'name' => 'Flutterwave',
                 'code' => 'flutterwave',
                 'class' => 'App\Services\Gateways\FlutterwavePayment',
-                'config' => []
+                'config' => '[]'
             ]
         ];
 
-        // use DB::table
-        foreach ($gateways as $gateway) {
-            PaymentGateway::create($gateway);
-        }
+        DB::table('payment_gateways')->upsert(
+            $gateways,
+            ['code'],
+            ['name', 'class', 'config']
+        );
     }
 }
