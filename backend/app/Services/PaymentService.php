@@ -99,4 +99,52 @@ final class PaymentService
             ]
         ]);
     }
+
+    public function handleCallback(PaymentGatewayI $provider, array $data): array
+    {
+        $response['status'] = false;
+        $response['message'] = 'Payment verification failed';
+
+        try {
+            $result = $provider->verifyCallback($data);
+            if ($result['error']) {
+                Log::error('payment.callback', [
+                    'data' => $data,
+                    'result' => $result
+                ]);
+
+                $response['message'] = $result['message'];
+                return $response;
+            }
+
+            $transaction = Transaction::whereReference($result['data']['reference'])
+                ->first();
+
+            if (!$transaction) {
+                $response['message'] = 'Invalid transaction reference';
+
+                Log::error('payment.callback', [
+                    'message' => $response['message'],
+                    'result' => $result
+                ]);
+                return $response;
+            }
+
+            $transaction->status = $result['data']['status'];
+            $transaction->save();
+
+            if ($result['data']['status'] === 'success') {
+                $response['status'] = true;
+                $response['message'] = 'Your payment has been verified';
+            }
+        } Catch (\Exception $e) {
+            Log::error('payment.callback', [
+                'data' => $data,
+                'message' => $e->getMessage(),
+                'e' => $e
+            ]);
+        }
+
+        return $response;
+    }
 }

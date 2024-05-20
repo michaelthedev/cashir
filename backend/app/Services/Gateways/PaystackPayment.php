@@ -56,4 +56,27 @@ final class PaystackPayment extends AbstractGateway
     {
         return [];
     }
+
+    public function verifyCallback(array $data): array
+    {
+        $response['error'] = false;
+
+        $reference = $data['trxref'] ?? null;
+        if (!$reference) {
+            $response['message'] = 'Invalid reference';
+            return $response;
+        }
+
+        $request = $this->client->get("transaction/verify/{$reference}");
+        $result = json_decode($request->getBody()->getContents());
+
+        $response['error'] = false;
+        $response['message'] = 'success';
+        $response['data'] = [
+            'status' => ($result->data->status == 'success') ? 'success' : 'failed',
+            'reference' => $reference
+        ];
+
+        return $response;
+    }
 }

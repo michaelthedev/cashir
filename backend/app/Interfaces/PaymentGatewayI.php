@@ -6,7 +6,6 @@ namespace App\Interfaces;
 
 interface PaymentGatewayI
 {
-
     public function setAmount(float $amount): PaymentGatewayI;
 
     public function setCustomer(array $customer): PaymentGatewayI;
@@ -32,4 +31,6 @@ interface PaymentGatewayI
      * @return array
      */
     public function verify(string $reference): array;
+
+    public function verifyCallback(array $data): array;
 }
