@@ -48,7 +48,7 @@ export default function Payment() {
         toast.success(data.message);
         toast.info('Complete the payment in the popup window');
 
-        window.open(data.data.url, 'newwindow', 'width=400,height=600');
+        window.open(data.data.url, 'newwindow', 'width=600,height=600');
       })
       .catch((error) => {
         if (error.response?.data.errors) {
